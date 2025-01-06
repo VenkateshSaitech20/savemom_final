@@ -5,7 +5,7 @@
 1. Open the command prompt (CMD) or terminal and run:
 
    ```bash
-   git clone https://github.com/VenkateshSaitech20/savemom.git
+   git clone https://github.com/VenkateshSaitech20/savemom_final.git
    ```
 
 ## Step 2: Setup the project in VSCode and open the terminal
