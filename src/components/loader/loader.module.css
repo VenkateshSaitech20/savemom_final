@@ -1,0 +1,41 @@
+/* Loader.module.css */
+.loader, .btnLoader {
+    display: block;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #696cff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+.loader {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.btnLoader {
+    position: relative;
+    left: 0;
+    transform: translateX(0);
+}
+
+.smLoader {
+    width: 18px;
+    height: 18px;
+}
+
+.mdLoader {
+    width: 25px;
+    height: 25px;
+}
+
+.lgLoader {
+    width: 30px;
+    height: 30px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

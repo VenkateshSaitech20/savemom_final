@@ -1,0 +1,3723 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Savemom API Document",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Login"
+        },
+        {
+            "name": "Register"
+        },
+        {
+            "name": "ForGet Password"
+        },
+        {
+            "name": "Reports"
+        },
+        {
+            "name": "Bulk Import"
+        },
+        {
+            "name": "Change Password"
+        },
+        {
+            "name": "Customer Enquiries"
+        },
+        {
+            "name": "DashBoard"
+        },
+        {
+            "name": "Master Data Setting"
+        },
+        {
+            "name": "Menu"
+        },
+        {
+            "name": "Profile"
+        },
+        {
+            "name": "Subscribers"
+        },
+        {
+            "name": "Website Setting-First Section"
+        },
+        {
+            "name": "Website Setting-Second Section"
+        },
+        {
+            "name": "Website Setting-Brand"
+        },
+        {
+            "name": "Website Setting-Our Team"
+        },
+        {
+            "name": "Website Setting-Achievement"
+        },
+        {
+            "name": "Website Setting-Faq"
+        },
+        {
+            "name": "Website Setting-Contact Us"
+        },
+        {
+            "name": "Website Setting-Section Content"
+        },
+        {
+            "name": "Email"
+        }
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Login to Savemom",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "password"
+                                ]
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "email": "tcsadmin@gmail.com",
+                                        "password": "Admin@123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Register to Savemom",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ]
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "name": "sachin",
+                                        "email": "tcsadmin@gmail.com",
+                                        "password": "Admin@123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/register/{id}": {
+            "put": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Update to Savemom",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the user to update",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "name": "admin",
+                                        "email": "admin@gmail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Delete to Savemom",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the user to delete",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/forget-password": {
+            "post": {
+                "tags": [
+                    "ForGet Password"
+                ],
+                "summary": "Request a password reset email",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "description": "The email address of the user who wants to reset their password."
+                                    }
+                                },
+                                "required": [
+                                    "email"
+                                ]
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "email": "user@gmail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/reports/subscription-history": {
+            "post": {
+                "tags": [
+                    "Reports"
+                ],
+                "summary": "Subscription reports",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "pageSize": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "searchText": "",
+                                        "page": 1,
+                                        "pageSize": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/reports/subscription-history/excel-report": {
+            "post": {
+                "tags": [
+                    "Reports"
+                ],
+                "summary": "Download subscription history excel reports",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "searchText": "completed"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/bulk-import/export-excel": {
+            "post": {
+                "tags": [
+                    "Bulk Import"
+                ],
+                "summary": "Generate an Excel report",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Generate an Excel report for users, countries, states, cities, or districts.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "fileType": {
+                                        "type": "string",
+                                        "enum": [
+                                            "users",
+                                            "countries",
+                                            "states",
+                                            "cities",
+                                            "districts"
+                                        ],
+                                        "description": "The type of Excel report to generate."
+                                    }
+                                },
+                                "required": [
+                                    "fileType"
+                                ]
+                            },
+                            "examples": {
+                                "Example 1": {
+                                    "summary": "Generate Users Excel",
+                                    "value": {
+                                        "fileType": "users"
+                                    }
+                                },
+                                "Example 2": {
+                                    "summary": "Generate Countries Excel",
+                                    "value": {
+                                        "fileType": "countries"
+                                    }
+                                },
+                                "Example 3": {
+                                    "summary": "Generate States Excel",
+                                    "value": {
+                                        "fileType": "states"
+                                    }
+                                },
+                                "Example 4": {
+                                    "summary": "Generate Cities Excel",
+                                    "value": {
+                                        "fileType": "cities"
+                                    }
+                                },
+                                "Example 5": {
+                                    "summary": "Generate Districts Excel",
+                                    "value": {
+                                        "fileType": "districts"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response, Excel file generated.",
+                        "content": {
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bulk-import/import-cities": {
+            "post": {
+                "tags": [
+                    "Bulk Import"
+                ],
+                "summary": "Upload cities from an Excel file",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "examples": {
+                                    "summary": "Upload Cities Excel File",
+                                    "value": {
+                                        "file": "cities.xlsx"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response, Excel file generated.",
+                        "content": {
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bulk-import/import-countries": {
+            "post": {
+                "tags": [
+                    "Bulk Import"
+                ],
+                "summary": "Upload countries from an Excel file",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "examples": {
+                                    "summary": "Upload Countries Excel File",
+                                    "value": {
+                                        "file": "countries.xlsx"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response, Excel file generated.",
+                        "content": {
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bulk-import/import-districts": {
+            "post": {
+                "tags": [
+                    "Bulk Import"
+                ],
+                "summary": "Upload districts from an Excel file",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "examples": {
+                                    "summary": "Upload Districts Excel File",
+                                    "value": {
+                                        "file": "cities.xlsx"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response, Excel file generated.",
+                        "content": {
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bulk-import/import-states": {
+            "post": {
+                "tags": [
+                    "Bulk Import"
+                ],
+                "summary": "Upload states from an Excel file",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "examples": {
+                                    "summary": "Upload States Excel File",
+                                    "value": {
+                                        "file": "states.xlsx"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response, Excel file generated.",
+                        "content": {
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bulk-import/import-users": {
+            "post": {
+                "tags": [
+                    "Bulk Import"
+                ],
+                "summary": "Upload Excel file with user data",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "examples": {
+                                    "summary": "Users uploaded",
+                                    "value": {
+                                        "file": "states.xlsx"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response, Excel file generated.",
+                        "content": {
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/change-password": {
+            "post": {
+                "tags": [
+                    "Change Password"
+                ],
+                "summary": "Change user password",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "currentPassword": {
+                                        "type": "string"
+                                    },
+                                    "newPassword": {
+                                        "type": "string"
+                                    },
+                                    "confirmPassword": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "currentPassword": "Tcsadmin@123",
+                                        "newPassword": "Admin@123",
+                                        "confirmPassword": "Admin@123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/customer-enquiries": {
+            "post": {
+                "tags": [
+                    "Customer Enquiries"
+                ],
+                "summary": "Submit a customer enquiry",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "name": "admin",
+                                        "email": "admin@gmail.com",
+                                        "message": "I have a question about your services."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/customer-enquiries/get-enquiries": {
+            "post": {
+                "tags": [
+                    "Customer Enquiries"
+                ],
+                "summary": "Search customer enquiries with pagination",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "string"
+                                    },
+                                    "pageSize": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "searchText": "admin",
+                                        "page": 1,
+                                        "pageSize": 10
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Required Auth Token. See login",
+                        "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjA1ZDE2OTkxLTI0ZjQtNDdmZC1hYWNiLWM5NTI3YzM4MGU2OSIsImV4cCI6MTY3NDE0NjQ3N30.JKYMLjY4DX9lY9ZoOtsMWKdYnvixkCBkTjZkTPwo4Co"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/dashboard/get-count": {
+            "get": {
+                "tags": [
+                    "DashBoard"
+                ],
+                "summary": "Retrieve Dashboard Data Count",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/dashboard/get-table-data": {
+            "get": {
+                "tags": [
+                    "DashBoard"
+                ],
+                "summary": "Retrieve Dashboard Table Data",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/country": {
+            "get": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Retrieve a list of countries",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Create or Update a country",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "shortname": {
+                                        "type": "string"
+                                    },
+                                    "phoneCode": {
+                                        "type": "string"
+                                    },
+                                    "isActive": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1/create": {
+                                    "value": {
+                                        "name": "srilanka",
+                                        "shortname": "IN",
+                                        "phoneCode": "91",
+                                        "isActive": "yes"
+                                    }
+                                },
+                                "example2/update": {
+                                    "value": {
+                                        "id": 2,
+                                        "name": "srilanka",
+                                        "shortname": "IN",
+                                        "phoneCode": "91",
+                                        "isActive": "yes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Delete a country",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": 2
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/country/list": {
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Search and paginate countries",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "string"
+                                    },
+                                    "pageSize": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "country",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/country/get-by-id": {
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Fetch Country Details by ID",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "id": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": 4
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/state": {
+            "get": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Retrieve a list of states",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Create or Update a state",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "countryId": {
+                                        "type": "integer"
+                                    },
+                                    "isActive": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1/create": {
+                                    "value": {
+                                        "name": "kerala",
+                                        "countryId": 3,
+                                        "isActive": "yes"
+                                    }
+                                },
+                                "example2/update": {
+                                    "value": {
+                                        "id": 2,
+                                        "name": "kerala",
+                                        "countryId": 3,
+                                        "isActive": "yes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Delete a state",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": 2
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/state/list": {
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Search and paginate states",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "string"
+                                    },
+                                    "pageSize": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "state",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/state/get-by-id": {
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Fetch State Details by ID",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "id": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": 4
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/state/get-by-country-id": {
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Fetch states by countryId",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "stateId": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "countryId": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/city": {
+            "get": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Retrieve a list of city",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Create or Update a city",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "countryId": {
+                                        "type": "integer"
+                                    },
+                                    "stateId": {
+                                        "type": "integer"
+                                    },
+                                    "isActive": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1/create": {
+                                    "value": {
+                                        "name": "temple city",
+                                        "countryId": 3,
+                                        "stateId": 2,
+                                        "isActive": "yes"
+                                    }
+                                },
+                                "example2/update": {
+                                    "value": {
+                                        "id": 2,
+                                        "name": "temple city",
+                                        "countryId": 3,
+                                        "stateId": 2,
+                                        "isActive": "yes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Delete a city",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": 2
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/city/list": {
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Search and paginate cities",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "string"
+                                    },
+                                    "pageSize": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "city",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/city/get-cities-by-state-id": {
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Fetch cities by stateId",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "stateId": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "stateId": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/city/get-by-id": {
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Fetch city by Id",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "id": 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/district": {
+            "get": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Retrieve a list of district",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Create or Update a district",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "countryId": {
+                                        "type": "integer"
+                                    },
+                                    "stateId": {
+                                        "type": "integer"
+                                    },
+                                    "cityId": {
+                                        "type": "integer"
+                                    },
+                                    "isActive": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1/create": {
+                                    "value": {
+                                        "name": "temple city",
+                                        "countryId": 3,
+                                        "stateId": 2,
+                                        "cityId": 2,
+                                        "isActive": "yes"
+                                    }
+                                },
+                                "example2/update": {
+                                    "value": {
+                                        "id": 2,
+                                        "name": "temple city",
+                                        "countryId": 3,
+                                        "stateId": 2,
+                                        "cityId": 2,
+                                        "isActive": "yes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Delete a district",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": 2
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/district/list": {
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Search and paginate districts",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "string"
+                                    },
+                                    "pageSize": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "madurai",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/master-data-settings/district/get-by-id": {
+            "post": {
+                "tags": [
+                    "Master Data Setting"
+                ],
+                "summary": "Fetch district by Id",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "id": 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/get-menu-path": {
+            "post": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Fetch menus by role",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/get-sub-user-menus": {
+            "post": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Filter and retrieve subuser- menus by role",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/get-user-menus": {
+            "post": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Filter and retrieve  user-menus by role",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/permissions": {
+            "post": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Retrieve and filter menus based on user roles and permissions",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/profile": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get User Details",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Update User Details",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "contactNo": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "stateId": {
+                                        "type": "integer"
+                                    },
+                                    "zipCode": {
+                                        "type": "string"
+                                    },
+                                    "countryId": {
+                                        "type": "integer"
+                                    },
+                                    "companyName": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/subscribers": {
+            "post": {
+                "tags": [
+                    "Subscribers"
+                ],
+                "summary": "Subscribe to Newsletter",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "example@gmail.com"
+                                    }
+                                },
+                                "required": [
+                                    "email"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/subscribers/get-all-subscribers": {
+            "post": {
+                "tags": [
+                    "Subscribers"
+                ],
+                "summary": "Search Subscribers",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "pageSize": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "example",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/brand/brandimage": {
+            "post": {
+                "tags": [
+                    "Website Setting-Brand"
+                ],
+                "summary": "Create Brand Image",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Website Setting-Brand"
+                ],
+                "summary": "Get Brand Image",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Website Setting-Brand"
+                ],
+                "summary": "Delete Brand Image",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": "example123"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/brand/list": {
+            "post": {
+                "tags": [
+                    "Website Setting-Brand"
+                ],
+                "summary": "paginate Brand Image",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchImage": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "pageSize": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/brand/get-by-id": {
+            "post": {
+                "tags": [
+                    "Website Setting-Brand"
+                ],
+                "summary": "Get Brand Image by Id",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "id": "example123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/contact-us": {
+            "get": {
+                "tags": [
+                    "Website Setting-Contact Us"
+                ],
+                "summary": "Retrieve the contact methods available.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Website Setting-Contact Us"
+                ],
+                "summary": "Create or Update Contact Us Entry",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "badgeTitle": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "cardTitle": {
+                                        "type": "string"
+                                    },
+                                    "cardDescription": {
+                                        "type": "string"
+                                    },
+                                    "isfrontendvisible": {
+                                        "type": "string",
+                                        "description": "Flag indicating if the contact section is visible on the frontend."
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1/create": {
+                                    "value": {
+                                        "badgeTitle": "Customer Support  Always",
+                                        "title": "Contact Us",
+                                        "description": "You can reach us 24/7",
+                                        "cardTitle": "Support",
+                                        "cardDescription": "We are here to help.",
+                                        "isfrontendvisible": "Y"
+                                    }
+                                },
+                                "example2/update": {
+                                    "value": {
+                                        "id": "example123",
+                                        "badgeTitle": "Customer Support",
+                                        "title": "Contact Us",
+                                        "description": "You can reach us 24/7",
+                                        "cardTitle": "Support",
+                                        "cardDescription": "We are here to help.",
+                                        "isfrontendvisible": "Y"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/faq": {
+            "post": {
+                "tags": [
+                    "Website Setting-Faq"
+                ],
+                "summary": "Create or Update Faq",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "question": {
+                                        "type": "string"
+                                    },
+                                    "answer": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1/create": {
+                                    "value": {
+                                        "question": "What is your return policy?",
+                                        "answer": "Our return policy lasts 30 days."
+                                    }
+                                },
+                                "example2/update": {
+                                    "value": {
+                                        "id": "example123",
+                                        "question": "How do I reset my password?",
+                                        "answer": "To reset your password, click on the 'Forgot Password' link on the login page and follow the instructions sent to your email."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Website Setting-Faq"
+                ],
+                "summary": "Retrieve the list of available FAQs.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Website Setting-Faq"
+                ],
+                "summary": "Delete a FAQs",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": "example123"
+                            }
+                        }
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Successful response",
+                            "content": {
+                                "application/json": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/faq/list": {
+            "post": {
+                "tags": [
+                    "Website Setting-Faq"
+                ],
+                "summary": "Search FAQs based on text.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "pageSize": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "return policy",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/faq/get-by-id": {
+            "post": {
+                "tags": [
+                    "Website Setting-Faq"
+                ],
+                "summary": "Get FAQ by Id",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "id": "example123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/first-section": {
+            "get": {
+                "tags": [
+                    "Website Setting-First Section"
+                ],
+                "summary": "Retrieve the Banner Section Details",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Website Setting-First Section"
+                ],
+                "summary": "Create or Update Banner Section",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "bannerText": {
+                                        "type": "string"
+                                    },
+                                    "bannerSubText": {
+                                        "type": "string"
+                                    },
+                                    "buttonText": {
+                                        "type": "string"
+                                    },
+                                    "sectionType": {
+                                        "type": "string"
+                                    },
+                                    "isfrontendvisible": {
+                                        "type": "string"
+                                    },
+                                    "dashboardImageLight": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "dashboardImageDark": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/key-achievement": {
+            "get": {
+                "tags": [
+                    "Website Setting-Achievement"
+                ],
+                "summary": "Retrieve the list of available Achievements.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Website Setting-Achievement"
+                ],
+                "summary": "Create or Update Key Achievement",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "keyMetric": {
+                                        "type": "string"
+                                    },
+                                    "highlight": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Website Setting-Achievement"
+                ],
+                "summary": "Delete a Achievement",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": "example123"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/key-achievement/list": {
+            "post": {
+                "tags": [
+                    "Website Setting-Achievement"
+                ],
+                "summary": "Search Achievement based on text.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "pageSize": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "search",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/key-achievement/get-by-id": {
+            "post": {
+                "tags": [
+                    "Website Setting-Achievement"
+                ],
+                "summary": "Get  Achievement by Id",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "id": "example123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/our-team": {
+            "get": {
+                "tags": [
+                    "Website Setting-Our Team"
+                ],
+                "summary": "Retrieve the list of team members for the 'Our Team'",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Website Setting-Our Team"
+                ],
+                "summary": "Create or update team member details for the 'Our Team'",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Website Setting-Our Team"
+                ],
+                "summary": "Delete a Our Team",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": "example123"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/our-team/list": {
+            "post": {
+                "tags": [
+                    "Website Setting-Our Team"
+                ],
+                "summary": "Search Our Team based on text.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "pageSize": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "search",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/our-team/get-by-id": {
+            "post": {
+                "tags": [
+                    "Website Setting-Our Team"
+                ],
+                "summary": "Get Our Team by Id",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "id": "example123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/second-section": {
+            "get": {
+                "tags": [
+                    "Website Setting-Second Section"
+                ],
+                "summary": "Retrieve the list of Features",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Website Setting-Second Section"
+                ],
+                "summary": "Create or update a Second Section",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Website Setting-Second Section"
+                ],
+                "summary": "Delete a  Section",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": "example123"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/second-section/list": {
+            "post": {
+                "tags": [
+                    "Website Setting-Second Section"
+                ],
+                "summary": "Search Section based on text.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "pageSize": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "search",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/second-section/get-by-id": {
+            "post": {
+                "tags": [
+                    "Website Setting-Second Section"
+                ],
+                "summary": "Get Section by Id",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "id": "example123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/section-content": {
+            "get": {
+                "tags": [
+                    "Website Setting-Section Content"
+                ],
+                "summary": "Retrieve section content by section type",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "sectionType",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Type of the section to retrieve content for",
+                        "example": "faq"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Website Setting-Section Content"
+                ],
+                "summary": "Create or update section content",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "badgeTitle": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "sectionType": {
+                                        "type": "string",
+                                        "enum": [
+                                            "brand",
+                                            "key_achievements",
+                                            "plans"
+                                        ]
+                                    },
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "isfrontendvisible": {
+                                        "type": "string"
+                                    },
+                                    "discount": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1/create": {
+                                    "value": {
+                                        "badgeTitle": "Top Seller",
+                                        "title": "Best Monthly Plan",
+                                        "description": "This plan offers the best value.",
+                                        "sectionType": "plans",
+                                        "isfrontendvisible": "y",
+                                        "discount": "30"
+                                    }
+                                },
+                                "example2/update": {
+                                    "value": {
+                                        "id": 2,
+                                        "badgeTitle": "Top Seller",
+                                        "title": "Best Monthly Plan",
+                                        "description": "This plan offers the best value.",
+                                        "sectionType": "plans",
+                                        "isfrontendvisible": "y",
+                                        "discount": "30"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/website-settings/section-content/get-all": {
+            "get": {
+                "tags": [
+                    "Website Setting-Section Content"
+                ],
+                "summary": "Retrieve the list of available Section content.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/email/template": {
+            "post": {
+                "tags": [
+                    "Email"
+                ],
+                "summary": "Create or Update a template email",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "category": {
+                                        "type": "string"
+                                    },
+                                    "message": {
+                                        "type": "string"
+                                    },
+                                    "inActive": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1/create": {
+                                    "value": {
+                                        "category": "Welcome Email",
+                                        "message": "Welcome all",
+                                        "isActive": "Y"
+                                    }
+                                },
+                                "example2/update": {
+                                    "value": {
+                                        "id": 1,
+                                        "category": "Welcome Email",
+                                        "message": "Welcome all",
+                                        "isActive": "Y"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Email"
+                ],
+                "summary": "Delete an Email",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": 1
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/email/template/get-templates": {
+            "post": {
+                "tags": [
+                    "Email"
+                ],
+                "summary": "Search templates based on text.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "pageSize": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "search",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/email/template/get-template-by-id": {
+            "post": {
+                "tags": [
+                    "Email"
+                ],
+                "summary": "Get email by Id",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1": {
+                                    "value": {
+                                        "id": "example123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/email/setting": {
+            "post": {
+                "tags": [
+                    "Email"
+                ],
+                "summary": "Create or update an email setting",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "emailType": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "example1/create": {
+                                    "value": {
+                                        "email": "example@example.com",
+                                        "password": "yourpassword",
+                                        "emailType": "gmail"
+                                    }
+                                },
+                                "example2/update": {
+                                    "value": {
+                                        "id": "1",
+                                        "email": "example@example.com",
+                                        "password": "yourpassword",
+                                        "emailType": "gmail"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Email"
+                ],
+                "summary": "Retrieve the email settings",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/email/get-emails": {
+            "post": {
+                "tags": [
+                    "Email"
+                ],
+                "summary": "Search Email based on text.",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchText": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "integer"
+                                    },
+                                    "pageSize": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "searchText": "search",
+                                "page": 1,
+                                "pageSize": 10
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
